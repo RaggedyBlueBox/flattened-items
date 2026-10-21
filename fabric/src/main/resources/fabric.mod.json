@@ -17,6 +17,9 @@
     "entrypoints": {
         "client": [
             "blue.beaming.flatitems.FlatItemsFabric"
+               ],
+        "modmenu": [
+            "blue.beaming.flatitems.FlatItemsModMenu"
         ]
     },
     "mixins": [

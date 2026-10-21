@@ -1,19 +1,43 @@
-# Flat Items
+# Flattened Items
 
-This mod renders items as flat, like in older versions of the game. It's a rewrite of [Noryea's](https://github.com/noryea) mod [Fast Items](https://github.com/Noryea/fast-items).
+Renders items (and optionally blocks) as flat, like in older versions of the game —
+which also means fewer quads for the GPU on every dropped item.
 
-![A bunch of diamond swords, some diamonds, and a diamond block on quartz pillars. The former two are flat whilst the latter is not.](screenie.png)
+## Provenance
 
-## Settings
+**Unofficial 26.3 port** by **RaggedyBlueBox**, forked from
+[beamingblue/flat-items](https://github.com/beamingblue/flat-items) (`26.2` branch)
+and updated with AI assistance. All rights retained under the original license.
 
-These settings can be changed in-game with NeoForge's config screen or with [Mod Menu](https://modrinth.com/mod/modmenu) in Fabric.
+- Original mod: **Flat Items** by BeamingBlue (MIT)
+- Original concept: **Fast Items** by Noryea
+- Includes the missing-ModMenu-entrypoint fix first made in
+  [ThatCuteOne/flat-items](https://github.com/ThatCuteOne/flat-items)
 
-_`enabled` / Render Items as Flat_: Enables/disables the mod.
+## License
 
-_`affect_3d` / Affect 3D Models_: Determines whether 3D models like blocks will also be display as flat.
+MIT — same as upstream. See upstream repository for full terms.
 
-_`render_sides` / Render Sides of Items_: Renders the sides of items whilst still making them face the player. Makes for a nice, subtle 3D effect!
+## What changed vs upstream 26.2
 
-_`enlarge_3d` / Enlarge 3D Models_: Matches the size of flattened 3D models to 2D ones.
+- Minecraft 26.2 → 26.3 (range `[26.3, 26.4)`), NeoForm 26.3-1
+- Fabric Loader 0.19.5, Fabric API 0.164.0+26.3, ModMenu 21.0.0
+- NeoForge 26.3.0.95 (consumer-facing build is Fabric)
+- Added the `modmenu` entrypoint so the config screen registers
 
-_`facing` / Billboard_: Determines whether flattened items will face the player's eyes or the screen.
+## Build
+
+```bash
+export JAVA_HOME=/path/to/jdk-25
+./gradlew :fabric:build
+```
+
+Output: `fabric/build/libs/flat_items-FABRIC-26.3-1.1.2.jar`
+(rebrand: display name "Flattened Items", author RaggedyBlueBox;
+mod id stays `flat_items` so it conflicts cleanly with any future upstream build
+instead of double-loading.)
+
+## Install
+
+Drop the jar into `minecraft/mods/` on Minecraft 26.3 + Fabric Loader ≥ 0.19.5.
+Requires Fabric API. Configure via Mod Menu.
