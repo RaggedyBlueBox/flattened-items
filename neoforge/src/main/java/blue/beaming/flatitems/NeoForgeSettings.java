@@ -16,9 +16,9 @@ public final class NeoForgeSettings implements Settings {
         enabled = builder.comment("With this option enabled, items will be rendered in 2D and they will always face the player.")
                 .translation("flat_items.setting.enabled")
                 .define("enabled", true);
-        affect3D = builder.comment("By default, only 2D items are affected. This option also renders 3D models (such as blocks) as flat.")
+        affect3D = builder.comment("Renders 3D models (such as blocks) as flat, like 2D items. Turn off to affect 2D items only.")
                 .translation("flat_items.setting.affect_3d")
-                .define("affect_3d", false);
+                .define("affect_3d", true);
         renderSides = builder.comment("Renders the sides of items whilst still making them face the player. Makes for a nice, subtle 3D effect!")
                 .translation("flat_items.setting.render_sides")
                 .define("render_sides", false);

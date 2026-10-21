@@ -8,7 +8,8 @@ Renders dropped items flat, like the old days — and lighter on the GPU while d
 ## What it does
 
 - Flattens the 3D models of items lying on the ground into 2D sprites
-- Optional: also flatten block items, enlarge flattened 3D items, drop side faces
+- Block items flatten too, out of the box (toggleable: Affect 3D)
+- Optional: enlarge flattened 3D items, drop side faces
 - Spin-cancelling so drops sit still and readable instead of rotating
 - Everything configurable in-game via Mod Menu
 

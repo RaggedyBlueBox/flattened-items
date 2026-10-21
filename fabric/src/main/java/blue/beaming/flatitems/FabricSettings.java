@@ -12,6 +12,6 @@ public record FabricSettings(boolean enabled, boolean affect3D, boolean renderSi
             Codec.STRING.xmap(Facing::valueOf, Facing::name).fieldOf("facing").forGetter(Settings::facing)
     ).apply(instance, FabricSettings::new));
     public FabricSettings() {
-        this(true, false, false, false, Facing.SCREEN);
+        this(true, true, false, false, Facing.SCREEN);
     }
 }
