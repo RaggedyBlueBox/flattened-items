@@ -1,47 +1,58 @@
 # Flattened Items
 
-Renders items (and optionally blocks) as flat, like in older versions of the game —
-which also means fewer quads for the GPU on every dropped item.
+Renders dropped items flat, like the old days — and lighter on the GPU while doing it.
+
+**Fork:** [RaggedyBlueBox/flattened-items](https://github.com/RaggedyBlueBox/flattened-items)
+(upstream: [beamingblue/flat-items](https://github.com/beamingblue/flat-items))
+
+## What it does
+
+- Flattens the 3D models of items lying on the ground into 2D sprites
+- Optional: also flatten block items, enlarge flattened 3D items, drop side faces
+- Spin-cancelling so drops sit still and readable instead of rotating
+- Everything configurable in-game via Mod Menu
+
+## Requirements
+
+- Minecraft 26.3, Fabric Loader ≥ 0.19.5, Fabric API, Java 25+
+
+## Install
+
+1. Download `flat_items-fabric-26.3-1.1.2.jar` from
+   [Releases](https://github.com/RaggedyBlueBox/flattened-items/releases)
+2. Drop it into `minecraft/mods/`
+3. Configure via Mod Menu → Flattened Items
 
 ## Provenance
 
-**Unofficial 26.3 port** by **RaggedyBlueBox**, forked from
-[beamingblue/flat-items](https://github.com/beamingblue/flat-items) (`26.2` branch)
+Unofficial 26.3 port by **RaggedyBlueBox**, forked from upstream's `26.2` branch
 and updated with AI assistance. All rights retained under the original license.
 
-- Original mod: **Flat Items** by BeamingBlue (MIT)
+- Original **Flat Items** by BeamingBlue (MIT)
 - Original concept: **Fast Items** by Noryea
-- Includes the missing-ModMenu-entrypoint fix first made in
+- ModMenu-entrypoint fix first made in
   [ThatCuteOne/flat-items](https://github.com/ThatCuteOne/flat-items)
 
-## License
+## Porting notes (26.2 → 26.3)
 
-MIT — same as upstream. See upstream repository for full terms.
+- Dependency bumps: NeoForm 26.3-1, Loader 0.19.5, Fabric API 0.164.0,
+  ModMenu 21.0.0, NeoForge 26.3.0.95 (build-only; shipped build is Fabric)
+- `ItemEntityRenderer.submit` spins via `PoseStack.rotate(Axis, float)` now —
+  the spin-cancelling hook follows it (the old `mulPose(Quaternionfc)`
+  overload is gone in 26.3)
+- Per-layer quads moved to immutable `ItemQuads`; flattening rebuilds layers
+  through `setQuads(ItemQuads.split(...))` via a new `LayerRenderStateAccessor`
+- Mod id stays `flat_items` so this build conflicts cleanly with any future
+  upstream release instead of double-loading
 
-## What changed vs upstream 26.2
-
-- Minecraft 26.2 → 26.3 (range `[26.3, 26.4)`), NeoForm 26.3-1
-- Fabric Loader 0.19.5, Fabric API 0.164.0+26.3, ModMenu 21.0.0
-- NeoForge 26.3.0.95 (consumer-facing build is Fabric)
-- Added the `modmenu` entrypoint so the config screen registers
-- Retargeted the spin-cancelling hook: 26.3's `ItemEntityRenderer.submit`
-  rotates via `PoseStack.rotate(Axis, float)` (the old `mulPose(Quaternionfc)`
-  overload is gone), and per-layer quads moved to immutable `ItemQuads`,
-  so flattening now rebuilds via `setQuads(ItemQuads.split(...))`
-
-## Build
+## Build from source
 
 ```bash
 export JAVA_HOME=/path/to/jdk-25
 ./gradlew :fabric:build
+# → fabric/build/libs/flat_items-fabric-26.3-1.1.2.jar
 ```
 
-Output: `fabric/build/libs/flat_items-FABRIC-26.3-1.1.2.jar`
-(rebrand: display name "Flattened Items", author RaggedyBlueBox;
-mod id stays `flat_items` so it conflicts cleanly with any future upstream build
-instead of double-loading.)
+## License
 
-## Install
-
-Drop the jar into `minecraft/mods/` on Minecraft 26.3 + Fabric Loader ≥ 0.19.5.
-Requires Fabric API. Configure via Mod Menu.
+MIT, same as upstream.
