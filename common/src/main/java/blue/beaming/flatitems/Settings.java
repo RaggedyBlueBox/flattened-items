@@ -20,12 +20,12 @@ public interface Settings {
 
         private static Void player(PoseStack pose, ItemEntityRenderState iers, CameraRenderState crs) {
             final var p = crs.pos.subtract(iers.x, iers.y, iers.z).normalize();
-            pose.mulPose(new Quaternionf().rotateYXZ((float) Math.atan2(p.x, p.z), (float) Math.asin(-p.y), 0f));
+            pose.rotate(new Quaternionf().rotateYXZ((float) Math.atan2(p.x, p.z), (float) Math.asin(-p.y), 0f));
             return null;
         }
 
         private static Void screen(PoseStack pose, ItemEntityRenderState iers, CameraRenderState crs) {
-            pose.mulPose(crs.orientation);
+            pose.rotate(crs.orientation);
             return null;
         }
 

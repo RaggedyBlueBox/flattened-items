@@ -24,6 +24,10 @@ MIT — same as upstream. See upstream repository for full terms.
 - Fabric Loader 0.19.5, Fabric API 0.164.0+26.3, ModMenu 21.0.0
 - NeoForge 26.3.0.95 (consumer-facing build is Fabric)
 - Added the `modmenu` entrypoint so the config screen registers
+- Retargeted the spin-cancelling hook: 26.3's `ItemEntityRenderer.submit`
+  rotates via `PoseStack.rotate(Axis, float)` (the old `mulPose(Quaternionfc)`
+  overload is gone), and per-layer quads moved to immutable `ItemQuads`,
+  so flattening now rebuilds via `setQuads(ItemQuads.split(...))`
 
 ## Build
 

@@ -14,9 +14,13 @@ import java.util.List;
     @Override public List<BakedQuad>[] flat_items$quads() {
         var la = new List[this.layers.length];
         for (int i = 0; i < la.length; i++) {
-            la[i] = this.layers[i].prepareQuadList();
+            la[i] = ((LayerRenderStateAccessor) (Object) this.layers[i]).flat_items$getQuads().all();
         }
         //noinspection unchecked
         return la;
+    }
+
+    @Override public ItemStackRenderState.LayerRenderState[] flat_items$layers() {
+        return this.layers;
     }
 }
