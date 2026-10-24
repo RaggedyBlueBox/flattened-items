@@ -19,7 +19,7 @@ Renders dropped items flat, like the old days — and lighter on the GPU while d
 
 ## Install
 
-1. Download `flat_items-fabric-26.3-1.1.2.jar` from
+1. Download `flat_items-fabric-26.3-1.1.3.jar` from
    [Releases](https://github.com/RaggedyBlueBox/flattened-items/releases)
 2. Drop it into `minecraft/mods/`
 3. Configure via Mod Menu → Flattened Items
@@ -51,7 +51,7 @@ and updated with AI assistance. All rights retained under the original license.
 ```bash
 export JAVA_HOME=/path/to/jdk-25
 ./gradlew :fabric:build
-# → fabric/build/libs/flat_items-fabric-26.3-1.1.2.jar
+# → fabric/build/libs/flat_items-fabric-26.3-1.1.3.jar
 ```
 
 ## License
